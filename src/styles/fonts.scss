@@ -1,0 +1,25 @@
+$path: '../assets/fonts/';
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url($path+"HelveticaNeueLTPro-Roman.ttf");
+}
+@font-face {
+    font-family: "HelveticaNeue-thin";
+    src: url($path+"HelveticaNeueLTPro-Th.ttf");
+}
+@font-face {
+    font-family: "Lato";
+    src: url($path+"Lato-Regular.ttf");
+}
+@font-face {
+    font-family: "Lato-Bold";
+    src: url($path+"Lato-Bold.ttf");
+}
+@font-face {
+    font-family: "Lato-Black";
+    src: url($path+"Lato-Black.ttf");
+}
+@font-face {
+    font-family: "Lato-Light";
+    src: url($path+"Lato-Light.ttf");
+}

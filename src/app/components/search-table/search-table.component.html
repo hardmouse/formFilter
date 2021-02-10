@@ -1,0 +1,217 @@
+<div class="search-wrapper" role="search">
+  <form [formGroup]="checkboxForm">
+    <div class="table-search">
+
+      <div class="table-row table-header table-title">
+        <div class="table-cell" *ngFor="let title of catagory">
+          {{title}}
+        </div>
+      </div>
+
+      <div class="table-row table-header table-filter">
+        <div class="table-cell" *ngFor="let title of catagory; let i = index">
+          <!-- <div class="input-group"> -->
+            <app-combo-box
+                          [name]="'filter'+i" [title]="" [valueInput]="" (blur)="hideSearch()"
+                          [hideTitle]="true" [isFilter]="true"
+                          (inputClick)="filterTextOnChang($event,i)"
+            ></app-combo-box>
+            <!-- <div *ngIf="showReasonSearchDialog[i][j]" class="dropdown-box">
+              <ng-container *ngFor="let opt of reasonSearchFilter let p=index">
+                <div class="dropdown-item">
+                  <div class="dropdown-inner" innerHTML="{{ opt | highlighSearch : reasonSearchValue}}"
+                  (mousedown)="selectTheReason(p,i,j)" >{{opt}}</div>
+                </div>
+              </ng-container>
+            </div> -->
+            <!-- <input type="text" class="form-control input-filter" aria-label="Filter">
+            <span class="input-group-text"><i class="bgis-icon icon-filter"></i></span> -->
+
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <div class="table-row table-select-all">
+        <div class="table-cell">
+          <i class="bgis-icon arrows" [ngClass]="openAll ? 'icon-down-open-big':'icon-right-open-big'" (click)="checkAllCollapse()"></i>
+          <input class="form-check-input" type="checkbox" value=""
+            [attr.aria-label]="'Check All Items'" [checked]="checkAll"
+            (change)="onCheckAll()"
+          >
+          SELECT ALL
+        </div>
+      </div>
+
+      <div class="" formArrayName="requestedItem">
+        <div *ngFor="let item of requestsListFiltered; let i = index" [formGroupName]="i">
+          <div class="table-row table-item-info">
+            <div class="table-cell">
+              <i class="bgis-icon arrows" [ngClass]="requestsListFiltered[i].isOpen ? 'icon-down-open-big':'icon-right-open-big'" (click)="checkItemCollapse(i)"></i>
+              <input class="form-check-input" type="checkbox" value=""
+                [attr.aria-label]="'Checkbox for ' +item.name"
+                formControlName="isChecked" [checked]="requestsListFiltered[i].isChecked"
+                (change)="checkByGroup(i,$event.target)"
+              >
+              {{item.name}}
+            </div>
+            <div class="table-cell">
+              &nbsp;
+            </div>
+            <div class="table-cell">
+              &nbsp;
+            </div>
+            <div class="table-cell">
+              &nbsp;
+            </div>
+            <div class="table-cell">
+              &nbsp;
+            </div>
+            <div class="table-cell">
+              {{item.location}}
+            </div>
+            <div class="table-cell">
+              {{item.type}}
+            </div>
+            <div class="table-cell">
+              {{item.client}}
+            </div>
+            <div class="table-cell">
+              Approver
+            </div>
+            <div class="table-cell">
+              {{item.date}}
+            </div>
+            <div class="table-cell">
+              {{item.comments}}
+            </div>
+          </div>
+          <div [ngClass]="{'d-none':!requestsListFiltered[i].isOpen}" formArrayName="requestedItemDetail" >
+            <div class="table-row table-item-detail" *ngFor="let iUpdated of item.updated; let j = index" [formGroupName]="j">
+              <div class="table-cell table-dropdown-input"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                <input class="form-check-input" type="checkbox" value=""
+                  [attr.aria-label]="'Checkbox for ' +iUpdated.name" [checked]="requestsListFiltered[i].updated[j].isCheckedDetail"
+                  formControlName="isCheckedDetail" (change)="checkRequestListDetail(i,j,$event.target,'single')"
+                  selectBoxOptions="Canada;Denmark;Finland;Germany;Mexico"
+                >
+                {{iUpdated.name}}
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                {{iUpdated.status}}
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                {{iUpdated.previous}}
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                {{iUpdated.current}}
+              </div>
+              <div class="table-cell">
+                <!-- <input type="text" class="form-control input-reason" formControlName="reason"  aria-label="reason for approve or reject"> -->
+                <app-combo-box *ngIf="iUpdated.status!='approved'" [name]="'reason'+i" [title]="" [valueInput]="iUpdated.reason" (blur)="hideSearch()"
+                [hideTitle]="true" [errorMessage]="'Please enter a valid value.'" [isSearch]="true"
+                (inputClick)="reasonTextOnChang($event,i,j)" (conclick)="hideReasonSearch()"></app-combo-box>
+                <div *ngIf="showReasonSearchDialog[i][j]" class="dropdown-box">
+                  <!-- <div *ngIf="showReasonNoResult[i][j]" style="color:#00467f" (click)="resetReasonInput()">No results found </div> -->
+                  <ng-container *ngFor="let opt of reasonSearchFilter let p=index">
+                    <div class="dropdown-item">
+                      <div class="dropdown-inner" innerHTML="{{ opt | highlighSearch : reasonSearchValue}}"
+                      (mousedown)="selectTheReason(p,i,j)" >{{opt}}</div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                &nbsp;
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                &nbsp;
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                &nbsp;
+              </div>
+              <div class="table-cell"
+              (click)="checkRowDetail(i,j,$event.target,'single')">
+                {{iUpdated.approver}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ================================================================================================================== -->
+    <!-- <table class="table" formArrayName="requestedItem">
+      <thead>
+        <tr>
+          <th scope="col" class="th-header" *ngFor="let title of catagory">{{title}}</th>
+        </tr>
+        <tr>
+          <th scope="col" *ngFor="let i of catagory">
+            <div class="input-group">
+              <input type="text" class="form-control" aria-label="Filter">
+              <span class="input-group-text"><i class="bgis-icon icon-filter"></i></span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of requestsListFiltered; let i = index" [formGroupName]="i">
+        <tr *ngIf="checkVisible2(item.status)" [ngClass]="{'table-warning':item.status=='pending','table-success':item.status=='approved','table-danger':item.status=='rejected'}">
+          <td class="request-title">
+            <input class="form-check-input" type="checkbox" value=""
+              [attr.aria-label]="'Checkbox for ' +item.name"
+              formControlName="isChecked" [checked]="requestsListFiltered[i].isChecked"
+              (change)="checkByGroup(i,$event.target)"
+            >
+            {{item.name}}
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>{{item.location}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.client}}</td>
+          <td>Approver</td>
+          <td>{{item.date}}</td>
+          <td>{{item.comments}}</td>
+        </tr>
+        <tr>
+          <td colspan="9" style="padding: 0;">
+            <table class="table inner" formArrayName="requestedItemDetail">
+          <tr *ngFor="let iUpdated of item.updated; let j = index" [formGroupName]="j" [ngClass]="{'d-none':!checkVisible2(item.status) || !showDetail}">
+            <td class="sub-item">
+              <input class="form-check-input" type="checkbox" value=""
+                [attr.aria-label]="'Checkbox for ' +iUpdated.name" [checked]="requestsListFiltered[i].updated[j].isCheckedDetail"
+                formControlName="isCheckedDetail" (change)="checkRequestListDetail(i,j,$event.target,'From Detail Click')"
+              >
+              {{iUpdated.name}}
+            </td>
+            <td><s>{{iUpdated.previous}}</s><sup class="sub-note">(old)</sup></td>
+            <td><b>{{iUpdated.current}}</b><sup class="sub-note">(new)</sup></td>
+            <td>{{iUpdated.approver}}<sup class="sub-note">(approver)</sup></td>
+          </tr>
+
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+  </form>
+</div>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>

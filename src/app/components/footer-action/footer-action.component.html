@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="container button-wrapper">
+        <div class="button-right">
+            <button type="button" class="btn btn-primary" (click)="approve()">Approve</button>
+            <button type="button" class="btn btn-light" (click)="reject()">Reject</button>
+        </div>
+        <div class="button-left">
+            <button type="button" class="btn btn-light" (click)="delegateSelect()">Delegate Approval</button>
+        </div>
+    </div>
+</div>
+
+<bgis-modal [id]="footerModal">
+    <div class="modal-close" (click)="closeModal(footerModal);"><i class="bgis-icon icon-close"></i></div>
+    <h2>DELEGATE APPROVAL</h2>
+    <div class="modal-content-scroll-area">
+        <div class="title"><i class="bgis-icon icon-user-add"></i>Delegating the approval of the following equipment:</div>
+        <div class="wrapper-box">
+            <div *ngFor="let item of delegateObj; let i = index">
+                <div *ngIf="item.detail.length > 0">
+                    <b>{{item.name}}</b>
+                    <ul>
+                        <li *ngFor="let job of item.detail; let j = index">{{job.name}} - {{job.current}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <app-combo-box [name]="'SearchApprover'" [title]="'Search Contact'" [valueInput]=""
+            (inputClick)="approverSearchChange($event)" (conclick)="conclick()" style="width:20rem; margin-top: 1rem; display: block;">
+        </app-combo-box>
+        <div *ngIf="approverTableShow" class="bgis-card">
+            <div class="approver-table">
+                <div class="table-row table-header">
+                    <div class="table-cell" *ngFor="let cata of approverHeaders">
+                        {{cata}}
+                    </div>
+                </div>
+                <div class="table-row table-option" *ngFor="let approver of approverListFiltered; let i = index" (click)="selectApprover(approver)">
+                    <div class="table-cell" innerHTML="{{ approver.fname | highlighSearch : approverSearchValue}}">
+                    </div>
+                    <div class="table-cell" innerHTML="{{ approver.lname | highlighSearch : approverSearchValue}}">
+                    </div>
+                    <div class="table-cell" innerHTML="{{ approver.known | highlighSearch : approverSearchValue}}">
+                    </div>
+                    <div class="table-cell" innerHTML="{{ approver.email | highlighSearch : approverSearchValue}}">
+                    </div>
+                    <div class="table-cell" innerHTML="{{ approver.phone | highlighSearch : approverSearchValue}}">
+                    </div>
+                    <div class="table-cell" innerHTML="{{ approver.group | highlighSearch : approverSearchValue}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="approverNoResult">No Result</div>
+    </div>
+    <div class="button-wrapper" *ngIf="0">
+        <div class="button-right">
+            <button type="button" class="btn btn-light" style="max-width:12rem;" (click)="closeModal(footerModal);">Cancel</button>
+        </div>
+        <div class="button-left">
+            <button type="button" class="btn btn-primary" style="max-width:12rem;" (click)="closeModal(footerModal);">Close</button>
+        </div>
+        
+    </div>
+</bgis-modal>

@@ -1,0 +1,73 @@
+$header-height: 4rem;
+$footer-height: 4rem;
+app-header{
+    display: flex;
+    min-height: $header-height;
+    border-bottom: 0.5rem solid $primary;
+    background-color: #f8f8f8;
+    h1{
+        color:#212121;
+        font-size: 2rem;
+        font-family: Lato, HelveticaNeue, sans-serif;
+        font-weight: normal;
+    }
+}
+app-main{
+    display:flex;
+    flex-direction: column;
+    
+    flex-grow: 1;
+    // .container-fluid{
+    //     min-height: calc(100vh - #{$header-height} - #{$footer-height} - 0.5rem);
+    // }
+}
+app-footer-action{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    display:flex;
+    height: $footer-height;
+    background-color:#FFF;
+}
+bgis-modal{
+    position: fixed;
+    z-index: 1100;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    .modal-dialog{
+        border-left: 2rem solid $primary;
+        max-width: 80%;
+        .modal-close{
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+        .modal-content{
+            padding: 1rem 1rem 0 1rem;
+            border-radius: 0;
+            max-height: calc(100vh - 5rem);
+        }
+        h2{
+            color: $primary;
+            border-bottom: 1px solid #999;
+        }
+        .modal-content-scroll-area{
+            overflow-y: auto;
+            padding-bottom: 1rem;
+        }
+        .title{
+            padding: 0.5rem 0;
+        }
+        .wrapper-box{
+            border: 2px solid #333;
+            max-width: 90%;
+            padding: 1rem 1rem 0 1rem;
+        }
+    }
+
+}

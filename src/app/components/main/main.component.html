@@ -1,0 +1,68 @@
+<div class="container-fluid main-height">
+    <div class="container">
+        <div class="bgis-card" role="region">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Approval Portal</h2>
+                    <p>Filter the list by typing in the input fields below each column heading.</p>
+                </div>
+                <div class="col-sm-12 col-lg-6" *ngIf="0">
+                    <label>Approval Status</label>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="checkbox" class="btn-check" name="btnradio" id="Pending" autocomplete="off" (click)="selectStat(0)" [checked]="stats[0]">
+                        <label class="btn btn-outline-primary" for="Pending">Pending</label>
+                      
+                        <input type="checkbox" class="btn-check" name="btnradio" id="Approved" autocomplete="off" (click)="selectStat(1)" [checked]="stats[1]">
+                        <label class="btn btn-outline-primary" for="Approved">Approved</label>
+                      
+                        <input type="checkbox" class="btn-check" name="btnradio" id="Rejected" autocomplete="off" (click)="selectStat(2)" [checked]="stats[2]">
+                        <label class="btn btn-outline-primary" for="Rejected">Rejected</label>
+                    </div>
+                    <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="All" autocomplete="off" (click)="toggle(0)" [checked]="stat==0">
+                        <label class="btn btn-outline-primary" for="All">All</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="Pending" autocomplete="off" (click)="toggle(1)" [checked]="stat==1">
+                        <label class="btn btn-outline-primary" for="Pending">Pending</label>
+                      
+                        <input type="radio" class="btn-check" name="btnradio" id="Approved" autocomplete="off" (click)="toggle(2)" [checked]="stat==2">
+                        <label class="btn btn-outline-primary" for="Approved">Approved</label>
+                      
+                        <input type="radio" class="btn-check" name="btnradio" id="Rejected" autocomplete="off" (click)="toggle(3)" [checked]="stat==3">
+                        <label class="btn btn-outline-primary" for="Rejected">Rejected</label>
+                    </div> -->
+                    <!-- <div class="button-group">
+                        <div [ngClass]="{'hilite':stat==0}" (click)="toggle(0)">Pending</div>
+                        <div [ngClass]="{'hilite':stat==1}" (click)="toggle(1)">Approved</div>
+                        <div [ngClass]="{'hilite':stat==2}" (click)="toggle(2)">Rejected</div>
+                    </div> -->
+                </div>
+                <div class="col-sm-12 col-lg-6" *ngIf="0">
+                    <div class="extra-top inline">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (click)="detailShow()">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Hide Updated Detail
+                        </label>
+                    </div>
+                    <div class="extra-top inline">
+                        <input class="form-check-input" type="checkbox" value="" id="checkAll" (click)="checkAll()">
+                        <label class="form-check-label" for="checkAll">
+                            Check All
+                        </label>
+                    </div>
+                    <!-- <div class="inline">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="showModal = !showModal">
+                            modal - {{showModal}}
+                        </button>
+                    </div> -->
+                </div>
+                <div class="col-12">
+                    <app-search-table [stat]="stat" [showDetail]="showDetail" [stats]="stats" [approvalForm]="approvalForm" [checkAll]="isCheckAll">
+                        
+                    </app-search-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer-action role="contentinfo" [approvalForm]="approvalForm"></app-footer-action>

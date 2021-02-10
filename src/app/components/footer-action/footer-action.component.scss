@@ -1,0 +1,69 @@
+$grey-border: #B7B7B7;
+
+.button-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 0;
+    
+    .btn{
+        margin: 0 1rem;
+        font-size: 1rem;
+        min-width: 7rem;
+    }
+    .btn-light{
+        border: 2px solid #00467f;
+        // box-shadow: inset 0px 0px 0px 1px #00467f;
+        box-sizing: border-box;
+    }
+}
+.approver-table{
+    overflow-x:auto;
+    white-space: nowrap;
+    border: 1px solid$grey-border;
+    .table-row{
+        display: block;
+        border-bottom: 1px solid$grey-border;
+        &.table-header{
+            background-color: #EEE;  
+        }
+        &.table-title{
+            font-weight: bold;
+            .table-cell:not(:last-child)::after{
+                content:" | ";
+                position: absolute;
+                right: 0;
+                color: $grey-border;
+            }
+        }
+        &.table-option:hover{
+            cursor: pointer;
+            background-color: #EFEFFF;
+        }
+        .table-cell{
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            white-space: normal;
+            padding: 0.25rem;
+            &:nth-child(1){
+                width: 12%;
+            }
+            &:nth-child(2){
+                width: 12%;
+            }
+            &:nth-child(3){
+                width: 15%;
+            }
+            &:nth-child(4){
+                width: 24%;
+            }
+            &:nth-child(5){
+                width: 15%;
+            }
+            &:nth-child(6){
+                width: 20%;
+            }
+        }
+    }
+}

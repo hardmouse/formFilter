@@ -1,0 +1,16 @@
+.input-wrapper{
+    input{
+        width: 100%;
+        padding: 0 1.5rem 0 0.2rem;
+    }
+    input:focus{
+        outline: 1px solid #0079C1;
+    }
+    button{
+        border: 0;
+        padding: 0.12rem 0.2rem;
+        background-color: transparent;
+        position: absolute;
+        right: 6px;
+    }
+}
