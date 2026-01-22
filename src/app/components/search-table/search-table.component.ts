@@ -286,46 +286,5 @@ export class SearchTableComponent implements OnInit { //, OnChanges
 
   filterTextOnChang(_irv :InputConReturn,_cata){
     console.log(_irv,_cata);
-    // this.requestsListSearchArray[_cata] = (_irv.value!==undefined)?_irv.value.trim():"";
-    // this.requestsListFiltered = [];
-    // this.approvalForm.value.checkboxFilteredForm.value.requestedItem = this.approvalForm.value.checkboxForm.value.requestedItem;
-    // let i:number=0;
-    // this.requestsListView.forEach(_data=>{
-    //   let _cv;
-    //   switch (_cata){
-    //     case 0:
-    //       _cv = _data.name.toLocaleLowerCase();
-    //     break;
-    //     case 5:
-    //       _cv = _data.location.toLocaleLowerCase();
-    //       break;
-    //     case 6:
-    //       _cv = _data.type.toLocaleLowerCase();
-    //       break;
-    //     case 7:
-    //       _cv = _data.client.toLocaleLowerCase();
-    //       break;
-    //     case 9:
-    //       _cv = _data.date.toLocaleLowerCase();
-    //       break;
-    //     case 10:
-    //       _cv = _data.comment.toLocaleLowerCase();
-    //       break;
-    //   }
-    //   // console.log(this.requestsListView[_cata].name.toLocaleLowerCase(),">>>",this.requestsListView[_cata].name.toLocaleLowerCase());
-    //   // console.log(this.requestsListSearchArray[_cata],_cv);
-    //   if(_cv.indexOf(this.requestsListSearchArray[_cata].toLocaleLowerCase())>=0){
-    //     console.log("match");
-    //     this.requestsListFiltered.push(_data);
-    //   }else{
-    //     console.log(i,"no match",this.approvalForm.value.checkboxFilteredForm.value.requestedItem[i]);
-    //     this.approvalForm.value.checkboxFilteredForm.value.requestedItem.splice(i);
-    //   }
-    //   i++;
-    // });
-    // console.log("===>",this.approvalForm.value.checkboxForm.value.requestedItem);
-    // console.log("==========>",this.approvalForm.value.checkboxFilteredForm.value.requestedItem);
-    
-    // console.log(this.requestsListFiltered);
   }
 }
